@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SACC科技创新大赛报名</title>
+    <style>
+        /* ================= 全局样式 ================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            /* 关键修改：动漫天空的蓝色渐变背景 */
+            background: linear-gradient(to bottom, #5b9bd5 0%, #a3d4f7 40%, #e1f2fd 100%);
+            background-attachment: fixed; /* 让背景固定，滚动时不动 */
+            min-height: 100vh;
+        }
+
+        /* ================= 顶部区域 ================= */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3); /* 文字加一点阴影更清晰 */
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        /* ================= 中间主体容器 ================= */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 0 15px;
+        }
+
+        /* ================= 关键修改：半透明卡片（毛玻璃效果） ================= */
+        .card {
+            background-color: rgba(255, 255, 255, 0.85); /* 85% 透明度的白色 */
+            backdrop-filter: blur(10px); /* 背景模糊，毛玻璃核心代码 */
+            -webkit-backdrop-filter: blur(10px); /* 兼容苹果设备 */
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); /* 柔和阴影 */
+        }
+
+        .card h2 {
+            font-size: 18px;
+            color: #1e6fdb;
+            border-left: 4px solid #1e6fdb;
+            padding-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* ================= 比赛信息区域 ================= */
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .info-item {
+            flex: 1 1 45%;
+        }
+
+        .info-item strong {
+            color: #555;
+        }
+
+        .notice {
+            background-color: rgba(255, 251, 230, 0.9);
+            color: #faad14;
+            font-size: 13px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #ffe58f;
+        }
+
+        /* ================= 表单样式 ================= */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-item label {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .form-item label span {
+            color: red;
+        }
+
+        .form-item input[type="text"],
+        .form-item input[type="tel"],
+        .form-item input[type="email"],
+        .form-item select,
+        .form-item textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-item input:focus, .form-item select:focus, .form-item textarea:focus {
+            border-color: #1e6fdb;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(30, 111, 219, 0.1);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        .radio-group label {
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-item textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        .submit-btn {
+            background-color: #1e6fdb;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(30, 111, 219, 0.3);
+        }
+
+        .submit-btn:hover {
+            background-color: #145ab8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 111, 219, 0.4);
+        }
+
+        /* 底部版权 */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(0,0,0,0.5);
+            padding: 20px 0;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        }
+
+        /* ================= 手机屏幕适配 ================= */
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-item {
+                flex: 1 1 100%;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部区域 -->
+    <header class="header">
+        <h1>SACC 科技创新大赛</h1>
+        <p>南京邮电大学计算机学院科学技术协会</p >
+    </header>
+
+    <!-- 主体内容 -->
+    <main class="container">
+
+        <!-- 第一张卡片：比赛信息 -->
+        <section class="card">
+            <h2>比赛信息</h2>
+            <div class="info-grid">
+                <div class="info-item"><strong>比赛名称：</strong>SACC 科技创新大赛</div>
+                <div class="info-item"><strong>主办单位：</strong>计算机学院科学技术协会</div>
+                <div class="info-item"><strong>比赛时间：</strong>2026年9月15日</div>
+                <div class="info-item"><strong>比赛地点：</strong>南邮仙林校区计算机学科楼</div>
+                <div class="info-item"><strong>报名截止：</strong>2026年9月10日 23:59</div>
+                <div class="info-item"><strong>面向对象：</strong>南京邮电大学全体在校生</div>
+            </div>
+            <div class="notice">
+                距离报名截止还有 3 天，请尽快提交报名！
+            </div>
+        </section>
+
+        <!-- 第二张卡片：在线报名 -->
+        <section class="card">
+            <h2>在线报名</h2>
+            <form class="form-grid">
+                <!-- 姓名 -->
+                <div class="form-item">
+                    <label>姓名 <span>*</span></label>
+                    <input type="text" placeholder="请输入你的真实姓名">
+                </div>
+                <!-- 学号 -->
+                <div class="form-item">
+                    <label>学号 <span>*</span></label>
+                    <input type="text" placeholder="如 B22030101">
+                </div>
+                <!-- 手机号 -->
+                <div class="form-item">
+                    <label>手机号 <span>*</span></label>
+                    <input type="tel" placeholder="请输入11位手机号">
+                </div>
+                <!-- 邮箱 -->
+                <div class="form-item">
+                    <label>邮箱</label>
+                    <input type="email" placeholder="example@njupt.edu.cn">
+                </div>
+                <!-- 学院/专业 -->
+                <div class="form-item">
+                    <label>学院/专业 <span>*</span></label>
+                    <input type="text" placeholder="如：计算机学院 计算机科学与技术">
+                </div>
+                <!-- 参赛类别 -->
+                <div class="form-item">
+                    <label>参赛类别 <span>*</span></label>
+                    <select>
+                        <option value="">请选择参赛类别</option>
+                        <option value="1">软件应用与开发</option>
+                        <option value="2">硬件与物联网</option>
+                        <option value="3">人工智能与算法</option>
+                    </select>
+                </div>
+                <!-- 是否服从调剂 -->
+                <div class="form-item full-width">
+                    <label>是否服从调剂</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="adjust" checked> 是</label>
+                        <label><input type="radio" name="adjust"> 否</label>
+                    </div>
+                </div>
+                <!-- 个人简介 -->
+                <div class="form-item full-width">
+                    <label>个人简介 / 参赛宣言</label>
+                    <textarea placeholder="简单介绍一下你自己，或者写下你的参赛宣言（选填）"></textarea>
+                    <small style="color:#888; font-size:12px; margin-top:4px;">不超过 200 字</small>
+                </div>
+                <!-- 提交按钮 -->
+                <button type="button" class="submit-btn full-width">提交报名</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- 底部版权 -->
+    <footer class="footer">
+        © 2026 SACC 科技创新大赛 | 计算机学院科学技术协会
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript 初体验</title>
+</head>
+<body>
+  <h1>计数器</h1>
+  <p>你点击了 <span id="countDisplay">0</span> 次</p>
+  <button id="countBtn">点我 +1</button>
+  <script>
+    // JS // 1. 找元素——拿到按钮和显示数字的 span
+const btn = document.querySelector("#countBtn");
+const display = document.querySelector("#countDisplay");
+// 2. 存状态——用一个变量记住当前数字
+let count = 0;
+// 3. 绑事件——点击按钮时 count +1，并更新显示
+btn.addEventListener("click", function() {
+  count = count + 1;               // 数字 +1
+  display.textContent = count;     // 把新数字写回页面
+});
+  </script>
+</body>
+</html>

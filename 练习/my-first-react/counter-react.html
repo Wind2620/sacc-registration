@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>React 计数器</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function Counter() {
+            const [count, setCount] = React.useState(0);
+            const isEven = count % 2 === 0;
+            return (
+                <div style={{ textAlign: 'center', marginTop: '100px' }}>
+                    <h1>计数器：{count}</h1>
+                    <p style={{ color: isEven ? 'green' : 'red' }}>
+                        当前是：{isEven ? '偶数 (绿色)' : '奇数 (红色)'}
+                    </p >
+                    <button onClick={() => setCount(count + 1)}>加一</button>
+                    <button onClick={() => {
+                        if (count > 0) setCount(count - 1);
+                        else alert("不能减到负数啦！");
+                    }}>减一</button>
+                    <button onClick={() => setCount(0)}>归零</button>
+                </div>
+            );
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Counter />);
+    </script>
+</body>
+</html>

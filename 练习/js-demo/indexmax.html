@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JS动手试一试</title>
+</head>
+<body>
+
+    <p>你点击了 <span id="countDisplay">0</span> 次</p >
+    
+    <!-- 三个按钮 -->
+    <button id="btnAdd">+1</button>
+    <button id="btnSubtract">-1</button>
+    <button id="btnReset">归零</button>
+
+    <script>
+        let count = 0;
+        const display = document.getElementById('countDisplay');
+
+        // 1. 加1按钮
+        document.getElementById('btnAdd').addEventListener('click', function() {
+            count = count + 1;
+            display.textContent = count;
+        });
+
+        // 2. 减1按钮（用if判断，不能减到负数）
+        document.getElementById('btnSubtract').addEventListener('click', function() {
+            if (count > 0) {
+                count = count - 1;
+                display.textContent = count;
+            } else {
+                alert("已经是0了，不能再减啦！");
+            }
+        });
+
+        // 3. 归零按钮
+        document.getElementById('btnReset').addEventListener('click', function() {
+            count = 0;
+            display.textContent = count;
+        });
+    </script>
+</body>
+</html>
